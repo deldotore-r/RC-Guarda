@@ -215,6 +215,7 @@ li {
     border-radius: 4px;
     transition: var(--text-sm);
     font-weight: 500;
+    font-size: 1.125rem;
 }
 
 .nav-link:hover,
