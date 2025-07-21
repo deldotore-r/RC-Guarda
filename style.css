@@ -173,7 +173,7 @@ li {
 
 .nav-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
@@ -184,11 +184,11 @@ li {
 .nav-logo {
     display: flex;
     align-items: center;
-    gap: var(--spacing-sm);
+    gap: 1rem;
 }
 
 .logo {
-    height: 48px;
+    height: 80px;
     width: auto;
 }
 
@@ -250,7 +250,7 @@ main {
 .hero {
     background: linear-gradient(135deg, var(--rotary-blue) 0%, var(--rotary-blue-light) 100%);
     color: var(--white);
-    padding: var(--spacing-lg) 0;
+    padding: 3rem 0 2rem 0;
     text-align: center;
     position: relative;
     overflow: hidden;
