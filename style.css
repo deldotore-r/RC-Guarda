@@ -184,7 +184,7 @@ li {
 .nav-logo {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.5rem;
 }
 
 .logo {
@@ -861,16 +861,28 @@ main {
 /* Tablets */
 @media (max-width: 768px) {
 
-    /* Mostrar menu mobile */
+    /* Tornar o container da navegação um contexto de posicionamento */
+    .nav-container {
+        position: relative;
+    }
+
+    /* Mostrar o menu mobile (hambúrguer), posicionado no canto direito */
     .nav-toggle {
         display: flex;
+        position: absolute;
+        right: var(--spacing-sm);
+        /* ou: right: 1rem; */
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1100;
+        /* Garante que fique acima de outros elementos */
     }
 
     .logo {
         height: 32px;
     }
 
-    /* Esconder menu desktop em mobile */
+    /* Esconder menu desktop no mobile */
     .nav-menu {
         position: fixed;
         left: -100%;
@@ -919,7 +931,7 @@ main {
         gap: var(--spacing-lg);
     }
 
-    /* Ajustar cards para mobile */
+    /* Ajustar grids para mobile (1 coluna) */
     .cards-grid,
     .focus-areas,
     .values-grid,
@@ -945,6 +957,7 @@ main {
         max-width: 150px;
     }
 }
+
 
 /* Smartphones */
 @media (max-width: 480px) {
@@ -976,6 +989,7 @@ main {
     }
 }
 
+
 /* Estados de animação do menu mobile */
 .nav-toggle.active .bar:nth-child(2) {
     opacity: 0;
@@ -988,6 +1002,7 @@ main {
 .nav-toggle.active .bar:nth-child(3) {
     transform: translateY(-8px) rotate(-45deg);
 }
+
 
 /* Utilitários */
 .text-center {
@@ -1018,6 +1033,7 @@ main {
     margin-bottom: var(--spacing-md);
 }
 
+
 /* Acessibilidade - melhor contraste para links de foco */
 a:focus,
 button:focus,
@@ -1027,6 +1043,7 @@ select:focus {
     outline: 2px solid var(--rotary-gold);
     outline-offset: 2px;
 }
+
 
 /* Garantir que imagens sejam responsivas */
 img {
