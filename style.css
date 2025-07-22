@@ -404,6 +404,79 @@ main {
     box-shadow: var(--shadow-md);
 }
 
+/* Container principal */
+.destaques-container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2xl);
+}
+
+/* Card padrão */
+.card-destaque {
+    background-color: var(--white);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--spacing-xl);
+    padding: var(--spacing-xl);
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-normal);
+}
+
+.card-destaque:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Imagem do card */
+.card-destaque img {
+    width: 40%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+/* Texto do card */
+.destaque-texto {
+    width: 60%;
+}
+
+.card-destaque h3 {
+    font-size: var(--text-2xl);
+    color: var(--rotary-blue);
+    margin-bottom: var(--spacing-sm);
+}
+
+.card-destaque p {
+    font-size: var(--text-base);
+    color: var(--gray-800);
+    line-height: 1.7;
+}
+
+/* Card invertido (imagem à direita) */
+.card-destaque.reverse {
+    flex-direction: row-reverse;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+
+    .card-destaque,
+    .card-destaque.reverse {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .card-destaque img,
+    .destaque-texto {
+        width: 100%;
+    }
+}
+
 /* ===== 5. PÁGINAS ESPECÍFICAS ===== */
 
 /* Cabeçalho das páginas internas */
@@ -879,7 +952,7 @@ main {
     }
 
     .logo {
-        height: 48px;
+        height: 32px;
     }
 
     /* Esconder menu desktop no mobile */
@@ -930,6 +1003,8 @@ main {
         grid-template-columns: 1fr;
         gap: var(--spacing-lg);
     }
+
+   
 
     /* Ajustar grids para mobile (1 coluna) */
     .cards-grid,
@@ -1049,4 +1124,48 @@ select:focus {
 img {
     max-width: 100%;
     height: auto;
+}
+
+/* Container para imagens em ziguezague dentro dos cards-destaques */
+.card-destaque .imagens-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+/* Imagens empilhadas, largura total do container */
+.card-destaque .imagens-container img {
+    width: 100%;
+    max-height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    position: relative;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-normal);
+}
+
+/* Deslocamento e sobreposição estilo ziguezague */
+.card-destaque .imagens-container img:nth-child(odd) {
+    margin-left: 15%;
+    z-index: 2;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-destaque .imagens-container img:nth-child(even) {
+    margin-right: 15%;
+    margin-top: -40px;
+    /* sobreposição sutil no canto superior da imagem anterior */
+    z-index: 1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Ajuste responsivo para telas pequenas */
+@media (max-width: 768px) {
+
+    .card-destaque .imagens-container img:nth-child(odd),
+    .card-destaque .imagens-container img:nth-child(even) {
+        margin: 0;
+        margin-top: var(--spacing-sm);
+        z-index: auto;
+    }
 }
