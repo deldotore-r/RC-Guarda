@@ -252,11 +252,13 @@
     <script src="script.js"></script>
 
     <script>
-        // Substitua as variáveis abaixo pelos dados do seu projeto
+        // Substituir pelos dados reais do seu projeto
         const SUPABASE_URL = 'https://lpyaufpvhmfaqyjbobsx.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxweWF1ZnB2aG1mYXF5amJvYnN4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMxOTY3NzcsImV4cCI6MjA2ODc3Mjc3N30.3ykfjUKyRPBvVT3y9JQ2xan_PYONqU4Oao6N8bdyVcE';
 
-        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        // Corrigido: exporta createClient da lib e usa db como instância
+        const { createClient } = supabase;
+        const db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         document.getElementById('contact-form').addEventListener('submit', async function (e) {
             e.preventDefault();
@@ -269,13 +271,14 @@
                 message: document.getElementById('message').value
             };
 
-            // Insere os dados na tabela contact_form
-            const { error } = await supabase
+            // Usa db aqui no lugar de supabase
+            const { error } = await db
                 .from('contact_form')
                 .insert([formData]);
 
             if (error) {
                 alert('Erro ao enviar: ' + error.message);
+                console.error('Erro Supabase:', error);
             } else {
                 alert('Mensagem enviada com sucesso!');
                 document.getElementById('contact-form').reset();
