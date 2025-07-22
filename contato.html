@@ -4,24 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contactos</title>
+    <title>Contato - Rotary Club da Guarda</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/x-icon" href="https://www.rotary.org/sites/default/files/favicon_0.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.42.0/dist/umd/supabase.min.js"></script>
 
     
 </head>
 
 <body>
-    <!-- Cabeçalho com navegação -->
     <header class="header">
         <nav class="nav">
             <div class="nav-container">
-                <!-- Logo e nome do clube -->
                 <div class="nav-logo">
-                    <img src="imagens/logo_sem_fundo.png"
-                        alt="Rotary Logo" class="logo">
-                    <!--<span class="club-name">Rotary Club da Guarda</span>-->
+                    <img src="imagens/logo_sem_fundo.png" alt="Rotary Logo" class="logo">
+                    
                 </div>
 
             <ul class="nav-menu" id="nav-menu">
@@ -94,7 +92,7 @@
                         </div>
                         <h3>Instagram</h3>
                         <p>
-                            <a href="https://www.instagram.com/SEU_USUARIO_AQUI" class="contact-link" target="_blank">
+                            <a href="https://www.instagram.com/rotaryclubdaguarda/" class="contact-link" target="_blank">
                                 Siga-nos no Instagram
                             </a>
                         </p>
@@ -252,6 +250,39 @@
     </footer>
 
     <script src="script.js"></script>
+
+    <script>
+        // Substitua as variáveis abaixo pelos dados do seu projeto
+        const SUPABASE_URL = 'https://SEU-PROJETO.supabase.co';
+        const SUPABASE_ANON_KEY = 'SUA-CHAVE-ANON';
+
+        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        document.getElementById('contact-form').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
+
+            // Insere os dados na tabela contact_form
+            const { error } = await supabase
+                .from('contact_form')
+                .insert([formData]);
+
+            if (error) {
+                alert('Erro ao enviar: ' + error.message);
+            } else {
+                alert('Mensagem enviada com sucesso!');
+                document.getElementById('contact-form').reset();
+            }
+        });
+    </script>
+
 </body>
 
 </html>
