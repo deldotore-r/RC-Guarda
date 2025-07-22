@@ -273,7 +273,7 @@
 
             // Usa db aqui no lugar de supabase
             const { error } = await db
-                .from('contact_form')
+                .from('contact-form')
                 .insert([formData]);
 
             if (error) {
