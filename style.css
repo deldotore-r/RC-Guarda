@@ -198,6 +198,10 @@ li {
     color: var(--rotary-blue);
 }
 
+figcaption {
+    text-align: center;
+}
+
 /* Menu de navegação */
 .nav-menu {
     display: flex;
@@ -488,6 +492,10 @@ main {
     color: var(--white);
     padding: var(--spacing-2xl) 0;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 250px;
 }
 
 .page-header h1 {
